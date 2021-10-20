@@ -11,6 +11,11 @@
   "engines": {
     "node": ">=10"
   },
+  "keywords": [
+    "react",
+    "image",
+    "upload"
+  ],
   "scripts": {
     "build": "microbundle-crl --no-compress --format modern,cjs",
     "start": "microbundle-crl watch --no-compress --format modern,cjs",
