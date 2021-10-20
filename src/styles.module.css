@@ -1,28 +1,15 @@
 /* add css module styles here (optional) */
 
-.container {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
 .content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
+  width: fit-content;
 }
 
 .imgWrapper {
   position: relative;
   background: whitesmoke;
-  border-radius: 10px;
   overflow: hidden;
-  height: 200px;
-  width: 200px;
+  min-height: 100px;
+  min-width: 100px;
 }
 
 .btnWrapper {

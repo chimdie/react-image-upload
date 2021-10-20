@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ExampleComponent } from 'react-image-upload'
+import ImageUploader from 'react-image-upload'
 import 'react-image-upload/dist/index.css'
 
 const App = () => {
@@ -11,7 +11,7 @@ const App = () => {
     console.log({ onDele: file })
   }
   return (
-    <ExampleComponent
+    <ImageUploader
       onFileAdded={(img) => getImageFileObject(img)}
       onFileRemoved={(img) => runAfterImageDelete(img)}
     />
