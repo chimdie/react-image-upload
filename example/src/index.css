@@ -12,7 +12,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
+.d-flex {
+  display: flex;
+}
+.m-4 {
+  margin: 4px;
+}
 /* .imgWrapper {
   border-radius: 10px;
-} */
+} */ ;

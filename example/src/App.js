@@ -11,10 +11,21 @@ const App = () => {
     console.log({ onDele: file })
   }
   return (
-    <ImageUploader
-      onFileAdded={(img) => getImageFileObject(img)}
-      onFileRemoved={(img) => runAfterImageDelete(img)}
-    />
+    <div className='d-flex'>
+      <div className='m-4'>
+        <ImageUploader
+          onFileAdded={(img) => getImageFileObject(img)}
+          onFileRemoved={(img) => runAfterImageDelete(img)}
+        />
+      </div>
+      <div className='m-4'>
+        <ImageUploader
+          onFileAdded={(img) => getImageFileObject(img)}
+          onFileRemoved={(img) => runAfterImageDelete(img)}
+          uploadElement={<div>upload button</div>}
+        />
+      </div>
+    </div>
   )
 }
 
