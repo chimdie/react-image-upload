@@ -1,8 +1,14 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable no-unused-vars */
 import React, { useState, useRef } from 'react'
 import styles from './styles.module.css'
 
-const ImageUploader = ({ onFileAdded, onFileRemoved, uploadElement }) => {
+const ImageUploader = ({
+  onFileAdded,
+  onFileRemoved,
+  uploadElement,
+  changeSize
+}) => {
   const ref = useRef()
   const [currentImg, setCurrentImg] = useState({})
 
@@ -76,6 +82,7 @@ const ImageUploader = ({ onFileAdded, onFileRemoved, uploadElement }) => {
     </div>
   )
 }
+
 function UploadElement({ element }) {
   if (element) {
     return <React.Fragment>{element}</React.Fragment>
@@ -94,6 +101,10 @@ function UploadElement({ element }) {
       />
     </svg>
   )
+}
+
+function ChangeSize({ img, height, width }) {
+  return <img height={height} width={width} />
 }
 
 export default ImageUploader
