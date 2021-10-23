@@ -16,6 +16,8 @@ const App = () => {
         <ImageUploader
           onFileAdded={(img) => getImageFileObject(img)}
           onFileRemoved={(img) => runAfterImageDelete(img)}
+          height='300px'
+          width='300px'
         />
       </div>
       <div className='m-4 imgWrapper'>
