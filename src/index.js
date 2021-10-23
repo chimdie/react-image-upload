@@ -7,7 +7,8 @@ const ImageUploader = ({
   onFileAdded,
   onFileRemoved,
   uploadElement,
-  changeSize
+  height,
+  width
 }) => {
   const ref = useRef()
   const [currentImg, setCurrentImg] = useState({})
@@ -34,7 +35,10 @@ const ImageUploader = ({
   return (
     <div className={styles.content}>
       {/* button wrapper */}
-      <div className={styles.imgWrapper}>
+      <div
+        className={styles.imgWrapper}
+        style={{ height: height, width: width }}
+      >
         <div className={styles.btnWrapper}>
           <button className={styles.btn} onClick={handleDeleteImage}>
             <svg
@@ -71,8 +75,6 @@ const ImageUploader = ({
           <img
             src={currentImg?.dataUrl}
             alt={currentImg?.dataUrl}
-            width={200}
-            height={200}
             loading='lazy'
           />
         ) : (
@@ -101,10 +103,6 @@ function UploadElement({ element }) {
       />
     </svg>
   )
-}
-
-function ChangeSize({ img, height, width }) {
-  return <img height={height} width={width} />
 }
 
 export default ImageUploader
