@@ -21,3 +21,8 @@ code {
 .imgWrapper {
   border-radius: 10px;
 }
+
+.addOns {
+  height: 500px;
+  width: 500px;
+}
