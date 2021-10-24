@@ -12,15 +12,15 @@ const App = () => {
   }
   return (
     <div className='d-flex'>
-      <div className='m-4'>
+      {/* example one */}
+      <div className='m-4 content'>
         <ImageUploader
           onFileAdded={(img) => getImageFileObject(img)}
           onFileRemoved={(img) => runAfterImageDelete(img)}
-          height='300px'
-          width='300px'
         />
       </div>
-      <div className='m-4 imgWrapper'>
+      {/* example 2 */}
+      {/* <div className='m-4 imgWrapper'>
         <ImageUploader
           onFileAdded={(img) => getImageFileObject(img)}
           onFileRemoved={(img) => runAfterImageDelete(img)}
@@ -56,7 +56,7 @@ const App = () => {
             </div>
           }
         />
-      </div>
+      </div> */}
     </div>
   )
 }
