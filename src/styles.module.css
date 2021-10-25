@@ -1,10 +1,10 @@
 /* add css module styles here (optional) */
 
-.content {
+.__content {
   width: fit-content;
 }
 
-.imgWrapper {
+.__imgWrapper {
   position: relative;
   background: whitesmoke;
   overflow: hidden;
@@ -12,7 +12,7 @@
   min-width: 100px;
 }
 
-.btnWrapper {
+.__btnWrapper {
   top: 4px;
   right: 0;
   position: absolute;
@@ -24,13 +24,13 @@
   z-index: 1;
 }
 
-.btn {
+.__btn {
   background: transparent;
   border: none;
   cursor: pointer;
 }
 
-label {
+.__label {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -38,11 +38,11 @@ label {
   transform: translate(-50%, -50%);
 }
 
-label:hover {
+.__label:hover {
   cursor: pointer;
 }
 
-input {
+.__input {
   position: absolute;
   height: 0.1px;
   width: 0.1px;
@@ -54,7 +54,7 @@ input {
   z-index: -1;
 }
 
-img {
+.__img {
   display: block;
   object-fit: cover;
   position: absolute;

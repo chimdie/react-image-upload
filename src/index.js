@@ -33,14 +33,14 @@ const ImageUploader = ({
     setCurrentImg({})
   }
   return (
-    <div className={styles.content}>
+    <div className={styles.__content}>
       {/* button wrapper */}
       <div
-        className={styles.imgWrapper}
+        className={styles.__imgWrapper}
         style={{ height: height, width: width }}
       >
-        <div className={styles.btnWrapper}>
-          <button className={styles.btn} onClick={handleDeleteImage}>
+        <div className={styles.__btnWrapper}>
+          <button className={styles.__btn} onClick={handleDeleteImage}>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               width='20'
@@ -54,7 +54,7 @@ const ImageUploader = ({
         </div>
 
         {/* upload Input Box */}
-        <label className={styles.label}>
+        <label className={styles.__label}>
           <UploadElement element={uploadElement} />
           {currentImg.bataUrl ? (
             <React.Fragment />
@@ -64,6 +64,7 @@ const ImageUploader = ({
               ref={ref}
               type='file'
               name='upload'
+              className={styles.__input}
               onChange={handleImageUpload}
               accept='image/*'
               id='upload'
@@ -73,6 +74,7 @@ const ImageUploader = ({
         {/* image */}
         {currentImg.dataUrl ? (
           <img
+            className={styles.__img}
             src={currentImg?.dataUrl}
             alt={currentImg?.dataUrl}
             loading='lazy'

@@ -18,6 +18,10 @@ const App = () => {
           onFileAdded={(img) => getImageFileObject(img)}
           onFileRemoved={(img) => runAfterImageDelete(img)}
         />
+        {/*  */}
+        <div>
+          input box: <input type='text' />
+        </div>
       </div>
       {/* example 2 */}
       {/* <div className='m-4 imgWrapper'>
