@@ -17,11 +17,11 @@ const App = () => {
         <ImageUploader
           onFileAdded={(img) => getImageFileObject(img)}
           onFileRemoved={(img) => runAfterImageDelete(img)}
-          height={400}
-          width={400}
-          background='url("https://www.freecatphotoapp.com/your-image.jpg")'
+          height={200}
+          width={300}
         />
       </div>
+
       {/* example 2 */}
       <div className='_m4'>
         <ImageUploader
