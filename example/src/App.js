@@ -11,16 +11,19 @@ const App = () => {
     console.log({ onDele: file })
   }
   return (
-    <div className='d-flex'>
+    <div className='_dFlex'>
       {/* example one */}
-      <div className='m-4'>
+      <div className='_m4'>
         <ImageUploader
           onFileAdded={(img) => getImageFileObject(img)}
           onFileRemoved={(img) => runAfterImageDelete(img)}
+          height={400}
+          width={400}
+          background='url("https://www.freecatphotoapp.com/your-image.jpg")'
         />
       </div>
       {/* example 2 */}
-      <div className='m-4'>
+      <div className='_m4'>
         <ImageUploader
           onFileAdded={(img) => getImageFileObject(img)}
           onFileRemoved={(img) => runAfterImageDelete(img)}
@@ -29,7 +32,7 @@ const App = () => {
               <svg
                 class='svg-circleplus'
                 viewBox='0 0 100 100'
-                style={{ height: '20px', stroke: 'violet' }}
+                style={{ height: '20px', stroke: 'green' }}
               >
                 <circle
                   cx='50'

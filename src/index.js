@@ -8,7 +8,8 @@ const ImageUploader = ({
   onFileRemoved,
   uploadElement,
   height,
-  width
+  width,
+  background
 }) => {
   const ref = useRef()
   const [currentImg, setCurrentImg] = useState({})
@@ -37,7 +38,7 @@ const ImageUploader = ({
       {/* button wrapper */}
       <div
         className={styles.__imgWrapper}
-        style={{ height: height, width: width }}
+        style={{ height: height, width: width, background: background }}
       >
         <div className={styles.__btnWrapper}>
           <button className={styles.__btn} onClick={handleDeleteImage}>
@@ -56,7 +57,7 @@ const ImageUploader = ({
         {/* upload Input Box */}
         <label className={styles.__label}>
           <UploadElement element={uploadElement} />
-          {currentImg.bataUrl ? (
+          {currentImg.dataUrl ? (
             <React.Fragment />
           ) : (
             <input
