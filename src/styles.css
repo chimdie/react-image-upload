@@ -1,46 +1,40 @@
-.__content {
+.uploader__container {
   width: fit-content;
 }
-
-.__imgWrapper {
+.uploader__placeholder {
   position: relative;
   background: whitesmoke;
   overflow: hidden;
   min-height: 100px;
   min-width: 100px;
 }
-
-.__btnWrapper {
+.uploader__btn_wrapper {
   top: 4px;
   right: 0;
   position: absolute;
-
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0;
   z-index: 1;
 }
-
-.__btn {
+.uploader__btn {
   background: transparent;
   border: none;
   cursor: pointer;
 }
 
-.__label {
+.uploader__file_input_label {
   position: absolute;
   top: 50%;
   left: 50%;
   z-index: 1;
   transform: translate(-50%, -50%);
 }
-
-.__label:hover {
+.uploader__file_input_label:hover {
   cursor: pointer;
 }
-
-.__input {
+input.uploader__file_input {
   position: absolute;
   height: 0.1px;
   width: 0.1px;
@@ -52,7 +46,7 @@
   z-index: -1;
 }
 
-.__img {
+img.uploader__file {
   display: block;
   object-fit: cover;
   position: absolute;
