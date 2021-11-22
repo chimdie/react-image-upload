@@ -13,7 +13,7 @@ const App = () => {
   }
   return (
     <div className='_dFlex'>
-      {/* example one */}
+      {/* example 1 */}
       <div className='_m4'>
         <ImageUploader
           onFileAdded={(img) => getImageFileObject(img)}
