@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-import React, { useState, useEffect, ChangeEvent } from 'react'
+import React, { useState, ChangeEvent } from 'react'
 import { DeleteIcon, UploadIcon } from './components/icons'
 import { FileUploaderProps, FileObjectType } from './interface'
 import './styles.css'
@@ -10,13 +9,13 @@ const ImageUploader = ({
   uploadIcon,
   deleteIcon,
   style
-}: FileUploaderProps) => {
+}: FileUploaderProps): JSX.Element => {
   const [currentImg, setCurrentImg] = useState<Partial<FileObjectType>>({
     file: {} as File,
     dataUrl: ''
   })
 
-  const handleFilePicker = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleFilePicker = (e: ChangeEvent<HTMLInputElement>): void => {
     const { files } = e.target
 
     if (files != null && files.length > 0) {
@@ -27,18 +26,13 @@ const ImageUploader = ({
       setCurrentImg((oldImage) => {
         return { ...oldImage, ...imageObject }
       })
+      if (onFileAdded) {
+        onFileAdded(imageObject)
+      }
     }
   }
-  useEffect(() => {
-    if (onFileAdded) {
-      const partialCurrentImg: Partial<FileObjectType> = currentImg
-      const _currentImg: FileObjectType = partialCurrentImg as FileObjectType
 
-      onFileAdded(_currentImg)
-    }
-  }, [currentImg])
-
-  const handleDeleteImage = () => {
+  const handleDeleteImage = (): void => {
     if (onFileRemoved != null && Object.keys(currentImg).length > 0) {
       const partialCurrentImg: Partial<FileObjectType> = currentImg
       const _currentImg: FileObjectType = partialCurrentImg as FileObjectType
@@ -51,13 +45,13 @@ const ImageUploader = ({
       {/* button wrapper */}
       <div className='uploader__placeholder' style={style}>
         <div className='uploader__btn_wrapper'>
-          <div className='uploader__btn' onClick={handleDeleteImage}>
+          <div className='uploader__btn' onClick={() => handleDeleteImage()}>
             <DeleteIcon icon={deleteIcon} />
           </div>
         </div>
 
         {/* upload Input Box */}
-        {!currentImg?.dataUrl && (
+        {currentImg && currentImg.dataUrl !== null && (
           <label id='file_uploader' className='uploader__file_input_label'>
             <UploadIcon element={uploadIcon} />
             {/* input element */}
@@ -66,14 +60,14 @@ const ImageUploader = ({
               key={currentImg.dataUrl}
               type='file'
               name='upload'
-              onChange={handleFilePicker}
+              onChange={(e) => handleFilePicker(e)}
               accept='image/*'
               id='file_uploader'
             />
           </label>
         )}
         {/* image */}
-        {currentImg && currentImg.dataUrl && (
+        {currentImg.dataUrl && (
           <img
             className='uploader__file'
             src={currentImg.dataUrl}
