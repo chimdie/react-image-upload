@@ -1,9 +1,9 @@
-/* eslint-disable no-unused-vars */
-import React from 'react'
+import React, { Fragment } from 'react'
+import { UploadIconProp, DeleteIconProps } from '../interface'
 
-export function UploadIcon({ element }) {
+export function UploadIcon({ element }: UploadIconProp): JSX.Element {
   if (element) {
-    return <React.Fragment>{element}</React.Fragment>
+    return <Fragment>{element}</Fragment>
   }
   return (
     <svg
@@ -21,9 +21,9 @@ export function UploadIcon({ element }) {
   )
 }
 
-export function DeleteIcon({ icon }) {
+export function DeleteIcon({ icon }: DeleteIconProps): JSX.Element {
   if (icon) {
-    return <React.Fragment>{icon}</React.Fragment>
+    return <Fragment>{icon}</Fragment>
   }
   return (
     <svg
