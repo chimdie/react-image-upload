@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent } from 'react'
 import { DeleteIcon, UploadIcon } from './components/icons'
 import { FileUploaderProps, FileObjectType } from './interface'
-import './styles.css'
+import './index.css'
 
 const ImageUploader = ({
   onFileAdded,
