@@ -14,7 +14,7 @@ npm install --save react-image-upload
 
 ```jsx
 import ImageUploader from 'react-image-upload'
-import 'react-image-upload/dist/style.css'
+import 'react-image-upload/dist/index.css'
 
 const App = () => {
   function getImageFileObject(imageFile) {

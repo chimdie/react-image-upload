@@ -1,6 +1,6 @@
 import React from 'react'
 import ImageUploader, { FileObjectType } from 'react-image-upload'
-import 'react-image-upload/dist/style.css'
+import 'react-image-upload/dist/index.css'
 import './index.css'
 import { BsCamera } from 'react-icons/bs'
 import { RiDeleteRow } from 'react-icons/ri'
