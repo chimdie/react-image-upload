@@ -27,5 +27,21 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish package to npm
-        run: npx np --no-2fa
+      - name: Install np
+        run: npm install -g np
+
+      - name: Set up npm registry authentication
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish patch release to npm
+        run: np --no-2fa
+
+      - name: Publish minor release to npm
+        if: github.event_name == 'push' && contains(github.ref, 'refs/heads/main') && startsWith(github.head_commit.message, 'feat')
+        run: np --no-2fa minor
+
+      - name: Publish major release to npm
+        if: github.event_name == 'push' && contains(github.ref, 'refs/heads/main') && startsWith(github.head_commit.message, 'BREAKING CHANGE')
+        run: np --no-2fa major
