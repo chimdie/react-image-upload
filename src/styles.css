@@ -23,7 +23,6 @@
   border: none;
   cursor: pointer;
 }
-
 .uploader__file_input_label {
   position: absolute;
   top: 50%;
@@ -45,7 +44,6 @@ input.uploader__file_input {
   bottom: 0;
   z-index: -1;
 }
-
 img.uploader__file {
   display: block;
   object-fit: cover;

@@ -60,5 +60,8 @@
       "require": "./dist/index.umd.js"
     },
     "./dist/style.css": "./dist/style.css"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^3.1.0"
   }
 }
