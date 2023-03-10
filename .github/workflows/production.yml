@@ -7,14 +7,18 @@ on:
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
-
+    env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - uses: actions/checkout@v2
 
       - name: Use Node.js
         uses: actions/setup-node@v2
+        
+      - uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: '16.x'
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
         run: npm install
@@ -29,11 +33,6 @@ jobs:
 
       - name: Install np
         run: npm install -g np
-
-      - name: Set up npm registry authentication
-        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish patch release to npm
         run: np --no-2fa --yes patch
