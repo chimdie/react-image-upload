@@ -53,7 +53,7 @@ export default App
 | style         | obj  | optional | Write your custom css                                                           |
 | deleteIcon    | ele  | optional | The icon used to delete file                                                    |
 | uploadIcon    | ele  | optional | The icon used to upload file                                                    |
-| onFileAdded   | func | optional | A function that runs after file has been uploaded and returns the uploaded file |
+| onFileAdded   | func | required | A function that runs after file has been uploaded and returns the uploaded file |
 | onFileRemoved | func | optional | A function that runs after file has been removed and returns the removed file   |
 
 ## License
