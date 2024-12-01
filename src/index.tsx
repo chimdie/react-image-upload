@@ -1,84 +1,107 @@
-import React, { useState, ChangeEvent } from 'react'
-import { DeleteIcon, UploadIcon } from './components/icons'
-import { FileUploaderProps, FileObjectType } from './interface'
-import './index.css'
+import React, { useState, ChangeEvent, ReactNode } from 'react'
 
-const ImageUploader = ({
+export interface FileObjectType {
+  file: File
+  dataUrl: string
+  name: string
+  size: number
+}
+
+export interface FileUploaderProps {
+  onFileAdded?: (file: FileObjectType) => void
+  onFileRemoved?: (file: FileObjectType) => void
+  renderFilePreview?: (
+    file: FileObjectType,
+    handleDelete: () => void
+  ) => ReactNode
+  renderUploadButton?: (triggerFilePicker: () => void) => ReactNode
+  noThumbnails?: boolean // Toggle for hiding previews
+  customContainerStyle?: React.CSSProperties
+  customContainerClassName?: string
+}
+
+const FileUploader = ({
   onFileAdded,
   onFileRemoved,
-  uploadIcon,
-  deleteIcon,
-  style
+  renderFilePreview,
+  renderUploadButton,
+  noThumbnails = false,
+  customContainerStyle,
+  customContainerClassName
 }: FileUploaderProps): JSX.Element => {
-  const [currentImg, setCurrentImg] = useState<Partial<FileObjectType>>({
-    file: {} as File,
-    dataUrl: ''
-  })
+  const [currentFile, setCurrentFile] = useState<FileObjectType | null>(null)
 
   const handleFilePicker = (e: ChangeEvent<HTMLInputElement>): void => {
     const { files } = e.target
 
-    if (files != null && files.length > 0) {
-      const imageObject = {
-        file: files[0],
-        dataUrl: URL.createObjectURL(files[0])
+    if (files && files.length > 0) {
+      const file = files[0]
+      const fileObject: FileObjectType = {
+        file,
+        dataUrl: URL.createObjectURL(file),
+        name: file.name,
+        size: file.size
       }
-      setCurrentImg((oldImage) => {
-        return { ...oldImage, ...imageObject }
-      })
-      if (onFileAdded) {
-        onFileAdded(imageObject)
-      }
+      setCurrentFile(fileObject)
+      onFileAdded?.(fileObject)
     }
   }
 
-  const handleDeleteImage = (): void => {
-    if (onFileRemoved != null && Object.keys(currentImg).length > 0) {
-      const partialCurrentImg: Partial<FileObjectType> = currentImg
-      const _currentImg: FileObjectType = partialCurrentImg as FileObjectType
-      onFileRemoved(_currentImg)
+  // Handle file deletion
+  const handleDeleteFile = (): void => {
+    if (currentFile) {
+      onFileRemoved?.(currentFile)
+      setCurrentFile(null)
     }
-    setCurrentImg({})
   }
+
+  // Trigger file picker programmatically
+  const triggerFilePicker = (): void => {
+    const input = document.getElementById(
+      'file-picker-input'
+    ) as HTMLInputElement
+    if (input) input.click()
+  }
+
   return (
-    <div className='uploader__container'>
-      {/* button wrapper */}
-      <div className='uploader__placeholder' style={style}>
-        <div className='uploader__btn_wrapper'>
-          <div className='uploader__btn' onClick={() => handleDeleteImage()}>
-            <DeleteIcon icon={deleteIcon} />
-          </div>
-        </div>
+    <div
+      className={`file-uploader-container ${customContainerClassName || ''}`}
+      style={customContainerStyle}
+    >
+      <input
+        type='file'
+        accept='image/*'
+        id='file-picker-input'
+        style={{ display: 'none' }}
+        onChange={handleFilePicker}
+      />
 
-        {/* upload Input Box */}
-        {currentImg && currentImg.dataUrl !== null && (
-          <label id='file_uploader' className='uploader__file_input_label'>
-            <UploadIcon element={uploadIcon} />
-            {/* input element */}
-            <input
-              className='uploader__file_input'
-              key={currentImg.dataUrl}
-              type='file'
-              name='upload'
-              onChange={(e) => handleFilePicker(e)}
-              accept='image/*'
-              id='file_uploader'
+      {renderUploadButton ? (
+        renderUploadButton(triggerFilePicker)
+      ) : (
+        <button onClick={triggerFilePicker}>Upload File</button>
+      )}
+
+      {!noThumbnails &&
+        currentFile &&
+        (renderFilePreview ? (
+          renderFilePreview(currentFile, handleDeleteFile)
+        ) : (
+          <div className='default-preview'>
+            <img
+              src={currentFile.dataUrl}
+              alt={currentFile.name}
+              style={{ maxWidth: '200px', marginBottom: '10px' }}
             />
-          </label>
-        )}
-        {/* image */}
-        {currentImg.dataUrl && (
-          <img
-            className='uploader__file'
-            src={currentImg.dataUrl}
-            alt={currentImg.dataUrl}
-            loading='lazy'
-          />
-        )}
-      </div>
+            <div>
+              <p>{currentFile.name}</p>
+              <p>{(currentFile.size / 1024).toFixed(2)} KB</p>
+              <button onClick={handleDeleteFile}>Delete</button>
+            </div>
+          </div>
+        ))}
     </div>
   )
 }
 
-export default ImageUploader
-export type { FileUploaderProps, FileObjectType }
+export default FileUploader
